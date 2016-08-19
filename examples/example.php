@@ -97,12 +97,9 @@ $data = 'otpauth://totp/test?secret=B3JX4VCVJDVNXNZ5&issuer=chillerlan.net';
 echo '<img class="qrcode" alt="qrcode" src="'.(new QRCode($data, new QRImage))->output().'" />';
 echo '<div class="qrcode">'.(new QRCode($data, new QRString))->output().'</div>';
 
-$oQR = new QRCode($data, new QRString);
 echo('<pre>'
 	."\n\n"
 	."PHP ".phpversion()."\n"
-	."\n"
-	.$oQR->getConst('foo')
 	.'</pre>'
 );
 

@@ -108,18 +108,6 @@ class QRCode{
 	protected $qrOutputInterface;
 
 
-	/**
-	 * --DEVELOPMENT--
-	 * remove this methode immediately after development finished!
-	 */
-	public function getConst($szName) {
-		//$mData = QRConst::$RSBLOCK;
-		//$mData = QRConst::$MAX_BITS;
-		$mData = QRConst::$MODE;
-		return(print_r($mData, true));
-	}
-
-
 
 	/**
 	 * QRCode constructor.
