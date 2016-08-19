@@ -20,7 +20,7 @@ use chillerlan\QRCode\QRConst;
  */
 class AlphaNum extends QRDataAbstract{
 
-	const CHAR_MAP = [
+	public static $CHAR_MAP = [
 		36 => ' ',
 		37 => '$',
 		38 => '%',
@@ -72,7 +72,7 @@ class AlphaNum extends QRDataAbstract{
 			case ord('0') <= $c && $c <= ord('9'): return $c - ord('0');
 			case ord('A') <= $c && $c <= ord('Z'): return $c - ord('A') + 10;
 			default:
-				foreach(self::CHAR_MAP as $i => $char){
+				foreach(self::$CHAR_MAP as $i => $char){
 					if(ord($char) === $c){
 						return $i;
 					}

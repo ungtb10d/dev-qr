@@ -17,14 +17,16 @@ namespace chillerlan\QRCode;
  */
 class QRConst{
 
-	const RSBLOCK = [
+	/** const */
+	public static $RSBLOCK = [
 		QRCode::ERROR_CORRECT_LEVEL_L => 0,
 		QRCode::ERROR_CORRECT_LEVEL_M => 1,
 		QRCode::ERROR_CORRECT_LEVEL_Q => 2,
 		QRCode::ERROR_CORRECT_LEVEL_H => 3,
 	];
 
-	const MAX_BITS = [
+	/** const */
+	public static $MAX_BITS = [
 		QRCode::TYPE_01 => [ 128,  152,   72,  104],
 		QRCode::TYPE_02 => [ 224,  272,  128,  176],
 		QRCode::TYPE_03 => [ 352,  440,  208,  272],
@@ -37,16 +39,18 @@ class QRConst{
 		QRCode::TYPE_10 => [1728, 2192,  976, 1232],
 	];
 
-	const MODE_NUMBER   = 1 << 0;
-	const MODE_ALPHANUM = 1 << 1;
-	const MODE_BYTE     = 1 << 2;
-	const MODE_KANJI    = 1 << 3;
+	/** NOTE: we define constants direct as numbers (we've removed the bit-shiftings here) */
+	const MODE_NUMBER   = 1;
+	const MODE_ALPHANUM = 2;
+	const MODE_BYTE     = 4;
+	const MODE_KANJI    = 8;
 
-	const MODE = [
-		self::MODE_NUMBER   => 0,
-		self::MODE_ALPHANUM => 1,
-		self::MODE_BYTE     => 2,
-		self::MODE_KANJI    => 3,
+	/** const */
+	public static $MODE = [
+		QRConst::MODE_NUMBER   => 0,
+		QRConst::MODE_ALPHANUM => 1,
+		QRConst::MODE_BYTE     => 2,
+		QRConst::MODE_KANJI    => 3,
 	];
 
 	const MASK_PATTERN000 = 0;
@@ -58,14 +62,17 @@ class QRConst{
 	const MASK_PATTERN110 = 6;
 	const MASK_PATTERN111 = 7;
 
-	const G15_MASK = (1 << 14)|(1 << 12)|(1 << 10)|(1 << 4)|(1 << 1);
-	const G15 = (1 << 10)|(1 << 8)|(1 << 5)|(1 << 4)|(1 << 2)|(1 << 1)|(1 << 0);
-	const G18 = (1 << 12)|(1 << 11)|(1 << 10)|(1 << 9)|(1 << 8)|(1 << 5)|(1 << 2)|(1 << 0);
+	/** NOTE: we define constants direct as numbers (we've removed the bit-shiftings here) */
+	const G15_MASK = 21522;
+	const G15      = 1335;
+	const G18      = 7973;
+
 
 	const PAD0 = 0xEC;
 	const PAD1 = 0x11;
 
-	const MAX_LENGTH = [
+	/** const */
+	public static $MAX_LENGTH = [
 		[[ 41,  25,  17,  10], [ 34,  20,  14,   8], [ 27,  16,  11,   7], [ 17,  10,   7,   4]],
 		[[ 77,  47,  32,  20], [ 63,  38,  26,  16], [ 48,  29,  20,  12], [ 34,  20,  14,   8]],
 		[[127,  77,  53,  32], [101,  61,  42,  26], [ 77,  47,  32,  20], [ 58,  35,  24,  15]],
@@ -78,7 +85,8 @@ class QRConst{
 		[[652, 395, 271, 167], [513, 311, 213, 131], [364, 221, 151,  93], [288, 174, 119,  74]],
 	];
 
-	const BLOCK_TABLE = [
+	/** const */
+	public static $BLOCK_TABLE = [
 		// 1
 		[1, 26, 19], // L
 		[1, 26, 16], // M
@@ -131,7 +139,8 @@ class QRConst{
 		[6, 43, 15, 2, 44, 16],
 	];
 
-	const PATTERN_POSITION = [
+	/** const */
+	public static $PATTERN_POSITION = [
 		[],
 		[6, 18],
 		[6, 22],

@@ -107,6 +107,20 @@ class QRCode{
 	 */
 	protected $qrOutputInterface;
 
+
+	/**
+	 * --DEVELOPMENT--
+	 * remove this methode immediately after development finished!
+	 */
+	public function getConst($szName) {
+		//$mData = QRConst::$RSBLOCK;
+		//$mData = QRConst::$MAX_BITS;
+		$mData = QRConst::$MODE;
+		return(print_r($mData, true));
+	}
+
+
+
 	/**
 	 * QRCode constructor.
 	 *
@@ -138,7 +152,7 @@ class QRCode{
 			$options = new QROptions;
 		}
 
-		if(!in_array($options->errorCorrectLevel, QRConst::RSBLOCK, true)){
+		if(!in_array($options->errorCorrectLevel, QRConst::$RSBLOCK, true)){
 			throw new QRCodeException('Invalid error correct level: '.$options->errorCorrectLevel);
 		}
 
@@ -146,7 +160,7 @@ class QRCode{
 
 		switch(true){
 			case Util::isAlphaNum($data):
-				$mode = Util::isNumber($data) ? QRConst::MODE_NUMBER : QRConst::MODE_ALPHANUM;
+				$mode = Util::isNumber($data) ? QRConst::$MODE_NUMBER : QRConst::MODE_ALPHANUM;
 				break;
 			case Util::isKanji($data):
 				$mode = QRConst::MODE_KANJI;
@@ -156,13 +170,13 @@ class QRCode{
 				break;
 		}
 
-		// see, Scrunitizer, it is concrete! :P
-		$qrDataInterface = [
-			QRConst::MODE_ALPHANUM => AlphaNum::class,
-			QRConst::MODE_BYTE     => Byte::class,
-			QRConst::MODE_KANJI    => Kanji::class,
-			QRConst::MODE_NUMBER   => Number::class,
-		][$mode];
+		$vTemp = [
+			 QRConst::MODE_ALPHANUM => "\chillerlan\QRCode\Data\AlphaNum",
+			 QRConst::MODE_BYTE     => "\chillerlan\QRCode\Data\Byte",
+			 QRConst::MODE_KANJI    => "\chillerlan\QRCode\Data\Kanji",
+			 QRConst::MODE_NUMBER   => "\chillerlan\QRCode\Data\Number",
+		];
+		$qrDataInterface = $vTemp[$mode];
 
 		$this->qrDataInterface = new $qrDataInterface($data);
 		$this->typeNumber = intval($options->typeNumber);
@@ -426,7 +440,7 @@ class QRCode{
 
 		$this->qrDataInterface->write($this->bitBuffer);
 
-		$MAX_BITS = QRConst::MAX_BITS[$this->typeNumber][$this->errorCorrectLevel];
+		$MAX_BITS = QRConst::$MAX_BITS[$this->typeNumber][$this->errorCorrectLevel];
 
 		if($this->bitBuffer->length > $MAX_BITS){
 			throw new QRCodeException('code length overflow. ('.$this->bitBuffer->length.' > '.$MAX_BITS.'bit)');
@@ -568,16 +582,18 @@ class QRCode{
 
 						$a = $row + $_col;
 						$m = $row * $_col;
-						$MASK_PATTERN = [
-							QRConst::MASK_PATTERN000 => $a % 2,
-							QRConst::MASK_PATTERN001 => $row % 2,
-							QRConst::MASK_PATTERN010 => $_col % 3,
-							QRConst::MASK_PATTERN011 => $a % 3,
-							QRConst::MASK_PATTERN100 => (floor($row / 2) + floor($_col / 3)) % 2,
-							QRConst::MASK_PATTERN101 => $m % 2 + $m % 3,
-							QRConst::MASK_PATTERN110 => ($m % 2 + $m % 3) % 2,
-							QRConst::MASK_PATTERN111 => ($m % 3 + $a % 2) % 2,
-						][$pattern];
+
+						$vTemp = [
+						     QRConst::MASK_PATTERN000 => $a % 2,
+						     QRConst::MASK_PATTERN001 => $row % 2,
+						     QRConst::MASK_PATTERN010 => $_col % 3,
+						     QRConst::MASK_PATTERN011 => $a % 3,
+						     QRConst::MASK_PATTERN100 => (floor($row / 2) + floor($_col / 3)) % 2,
+						     QRConst::MASK_PATTERN101 => $m % 2 + $m % 3,
+						     QRConst::MASK_PATTERN110 => ($m % 2 + $m % 3) % 2,
+						     QRConst::MASK_PATTERN111 => ($m % 3 + $a % 2) % 2,
+						];
+						$MASK_PATTERN = $vTemp[$pattern];
 
 						if($MASK_PATTERN === 0){
 							$dark = !$dark;
@@ -638,7 +654,7 @@ class QRCode{
 	 *
 	 */
 	protected function setupPositionAdjustPattern(){
-		$range = QRConst::PATTERN_POSITION[$this->typeNumber - 1];
+		$range = QRConst::$PATTERN_POSITION[$this->typeNumber - 1];
 
 		foreach($range as $i => $posI){
 			foreach($range as $j => $posJ){

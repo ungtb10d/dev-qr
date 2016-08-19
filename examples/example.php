@@ -7,7 +7,39 @@
  * @license      MIT
  */
 
-require_once '../vendor/autoload.php';
+//require_once '../vendor/autoload.php';
+//require_once '../../autoload.php';
+//
+// ============ example autoloader ======================================
+spl_autoload_register(
+	function($class) {
+		$szClassName = str_replace('\\', '/', $class);
+		$szClassName = substr($szClassName, strrpos($szClassName, '/')+1);
+
+		// {{{ --DEBUG--
+		//echo("<b>[$szClassName]</b><br>");
+		//ob_flush();
+		//flush();
+		// }}}
+
+		$szFileName = $szClassName.'.php';
+		switch(true) {
+			case file_exists('../src/' . $szFileName):
+				require_once '../src/' . $szFileName;
+				break;
+			case file_exists('../src/Data/' . $szFileName):
+				require_once '../src/Data/' . $szFileName;
+				break;
+			case file_exists('../src/Output/' . $szFileName):
+				require_once '../src/Output/' . $szFileName;
+				break;
+			default:
+				die("class $szFileName (in ".__DIR__.") not found for loading!");
+		}
+	}
+);
+// ======================================================================
+
 
 use chillerlan\QRCode\QRCode;
 use chillerlan\QRCode\Output\QRImage;
@@ -65,11 +97,23 @@ $data = 'otpauth://totp/test?secret=B3JX4VCVJDVNXNZ5&issuer=chillerlan.net';
 echo '<img class="qrcode" alt="qrcode" src="'.(new QRCode($data, new QRImage))->output().'" />';
 echo '<div class="qrcode">'.(new QRCode($data, new QRString))->output().'</div>';
 
+$oQR = new QRCode($data, new QRString);
+echo('<pre>'
+	."\n\n"
+	."PHP ".phpversion()."\n"
+	."\n"
+	.$oQR->getConst('foo')
+	.'</pre>'
+);
+
+/*
 $qrStringOptions = new QRStringOptions;
 $qrStringOptions->type = QRCode::OUTPUT_STRING_TEXT;
 
 echo '<pre class="qrcode">'.(new QRCode($data, new QRString($qrStringOptions)))->output().'</pre>';
+*/
 
 ?>
 </body>
 </html>
+
