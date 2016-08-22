@@ -1,0 +1,20 @@
+{
+    "name": "jtlshop/QRcodeGenerator",
+    "description": "Shop4 QRCode-Generator",
+    "version": "1.0.0",
+    "homepage": "https://jtl-software.de/",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "JTL-Software GmbH",
+            "email": "info@jtl-software.de",
+            "homepage": "https://jtl-software.de/"
+        }
+    ],
+    "require": {
+        "php": "^5.4.45"
+    }
+}
+
+
