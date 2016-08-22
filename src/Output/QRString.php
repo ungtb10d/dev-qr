@@ -10,9 +10,9 @@
  * @license      MIT
  */
 
-namespace chillerlan\QRCode\Output;
+namespace qrcodegenerator\QRCode\Output;
 
-use chillerlan\QRCode\QRCode;
+use qrcodegenerator\QRCode\QRCode;
 
 /**
  *

@@ -10,7 +10,7 @@
  * @license      MIT
  */
 
-namespace chillerlan\QRCode;
+namespace qrcodegenerator\QRCode;
 
 /**
  * const ALL THE THINGS! ~John Carmack

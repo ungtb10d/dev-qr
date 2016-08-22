@@ -10,10 +10,10 @@
  * @license      MIT
  */
 
-namespace chillerlan\QRCode\Data;
+namespace qrcodegenerator\QRCode\Data;
 
-use chillerlan\QRCode\BitBuffer;
-use chillerlan\QRCode\QRConst;
+use qrcodegenerator\QRCode\BitBuffer;
+use qrcodegenerator\QRCode\QRConst;
 
 /**
  *

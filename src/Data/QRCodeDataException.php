@@ -10,7 +10,7 @@
  * @license      MIT
  */
 
-namespace chillerlan\QRCode\Data;
+namespace qrcodegenerator\QRCode\Data;
 
 use Exception;
 

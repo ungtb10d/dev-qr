@@ -10,13 +10,13 @@
  * @license      MIT
  */
 
-namespace chillerlan\QRCode;
+namespace qrcodegenerator\QRCode;
 
-use chillerlan\QRCode\Data\AlphaNum;
-use chillerlan\QRCode\Data\Byte;
-use chillerlan\QRCode\Data\Kanji;
-use chillerlan\QRCode\Data\Number;
-use chillerlan\QRCode\Output\QROutputInterface;
+use qrcodegenerator\QRCode\Data\AlphaNum;
+use qrcodegenerator\QRCode\Data\Byte;
+use qrcodegenerator\QRCode\Data\Kanji;
+use qrcodegenerator\QRCode\Data\Number;
+use qrcodegenerator\QRCode\Output\QROutputInterface;
 
 /**
  * @link https://github.com/kazuhikoarase/qrcode-generator/tree/master/php
@@ -159,10 +159,10 @@ class QRCode{
 		}
 
 		$vTemp = [
-			 QRConst::MODE_ALPHANUM => "\chillerlan\QRCode\Data\AlphaNum",
-			 QRConst::MODE_BYTE     => "\chillerlan\QRCode\Data\Byte",
-			 QRConst::MODE_KANJI    => "\chillerlan\QRCode\Data\Kanji",
-			 QRConst::MODE_NUMBER   => "\chillerlan\QRCode\Data\Number",
+			 QRConst::MODE_ALPHANUM => "\qrcodegenerator\QRCode\Data\AlphaNum",
+			 QRConst::MODE_BYTE     => "\qrcodegenerator\QRCode\Data\Byte",
+			 QRConst::MODE_KANJI    => "\qrcodegenerator\QRCode\Data\Kanji",
+			 QRConst::MODE_NUMBER   => "\qrcodegenerator\QRCode\Data\Number",
 		];
 		$qrDataInterface = $vTemp[$mode];
 

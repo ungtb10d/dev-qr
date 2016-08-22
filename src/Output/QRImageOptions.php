@@ -9,8 +9,8 @@
  * @license      MIT
  */
 
-namespace chillerlan\QRCode\Output;
-use chillerlan\QRCode\QRCode;
+namespace qrcodegenerator\QRCode\Output;
+use qrcodegenerator\QRCode\QRCode;
 
 /**
  * Class QRImageOptions
