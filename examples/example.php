@@ -41,10 +41,10 @@ spl_autoload_register(
 // ======================================================================
 
 
-use chillerlan\QRCode\QRCode;
-use chillerlan\QRCode\Output\QRImage;
-use chillerlan\QRCode\Output\QRString;
-use chillerlan\QRCode\Output\QRStringOptions;
+use qrcodegenerator\QRCode\QRCode;
+use qrcodegenerator\QRCode\Output\QRImage;
+use qrcodegenerator\QRCode\Output\QRString;
+use qrcodegenerator\QRCode\Output\QRStringOptions;
 
 $data = 'otpauth://totp/test?secret=B3JX4VCVJDVNXNZ5&issuer=chillerlan.net';
 #$data = 'https://www.youtube.com/watch?v=DLzxrzFCyOs&t=43s';
