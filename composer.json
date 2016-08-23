@@ -2,7 +2,7 @@
     "name": "clemens.rudolph/qrcode-generator",
     "description": "QRCode-Generator adopted from chillerlan/php-qrcode",
     "type": "package",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "require": {
         "php": ">=5.4.45"
     },
@@ -26,6 +26,5 @@
         "psr-4": {
             "qrcodegenerator\\QRCode\\": "src/"
         }
-    },
-    "minimum-stability": "alpha"
+    }
 }

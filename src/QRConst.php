@@ -40,10 +40,10 @@ class QRConst{
 	];
 
 	/** NOTE: we define constants direct as numbers (we've removed the bit-shiftings here) */
-	const MODE_NUMBER   = 1;
-	const MODE_ALPHANUM = 2;
-	const MODE_BYTE     = 4;
-	const MODE_KANJI    = 8;
+	const MODE_NUMBER   = 1; // result of: 1 << 0
+	const MODE_ALPHANUM = 2; // result of: 1 << 1
+	const MODE_BYTE     = 4; // result of: 1 << 2
+	const MODE_KANJI    = 8; // result of: 1 << 3
 
 	/** const */
 	public static $MODE = [
@@ -63,9 +63,9 @@ class QRConst{
 	const MASK_PATTERN111 = 7;
 
 	/** NOTE: we define constants direct as numbers (we've removed the bit-shiftings here) */
-	const G15_MASK = 21522;
-	const G15      = 1335;
-	const G18      = 7973;
+	const G15_MASK = 21522; // result of: (1 << 14)|(1 << 12)|(1 << 10)|(1 << 4)|(1 << 1)
+	const G15      = 1335;  // result of: (1 << 10)|(1 << 8)|(1 << 5)|(1 << 4)|(1 << 2)|(1 << 1)|(1 << 0)
+	const G18      = 7973;  // result of: (1 << 12)|(1 << 11)|(1 << 10)|(1 << 9)|(1 << 8)|(1 << 5)|(1 << 2)|(1 << 0)
 
 
 	const PAD0 = 0xEC;
