@@ -1,5 +1,5 @@
 {
-    "name": "clemens.rudolph/qrcode-generator",
+    "name": "jtlshop/qrcode-generator",
     "description": "QRCode-Generator adopted from chillerlan/php-qrcode",
     "type": "package",
     "version": "0.1.0",
