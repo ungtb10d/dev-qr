@@ -2,9 +2,9 @@
     "name": "jtlshop/qrcodegenerator",
     "description": "QRCode-Generator adopted from chillerlan/php-qrcode",
     "type": "package",
-    "version": "0.1.0",
+    "version": "2.0.0",
     "require": {
-        "php": ">=5.4.45"
+        "php": ">=8.0"
     },
     "license": "MIT",
     "authors": [
@@ -18,7 +18,6 @@
         },
         {
             "name": "JTL-Software-GmbH",
-            "email": "info@jtl-software.com",
             "homepage": "https://www.jtl-software.de/"
         }
     ],

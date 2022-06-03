@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Class QROutputAbstract
  *
@@ -13,45 +13,44 @@
 namespace qrcodegenerator\QRCode\Output;
 
 /**
- *
+ * Class QROutputAbstract
  */
-abstract class QROutputAbstract implements QROutputInterface{
+abstract class QROutputAbstract implements QROutputInterface
+{
+    /**
+     * @var array
+     */
+    protected array $matrix;
 
-	/**
-	 * @var array
-	 */
-	protected $matrix;
+    /**
+     * @var int
+     */
+    protected int $pixelCount;
 
-	/**
-	 * @var int
-	 */
-	protected $pixelCount;
+    /**
+     * @var object
+     */
+    protected $options;
 
-	/**
-	 * @var object
-	 */
-	protected $options;
+    /**
+     * @param array $matrix
+     * @return $this
+     * @throws QRCodeOutputException
+     */
+    public function setMatrix(array $matrix)
+    {
+        $this->pixelCount = \count($matrix);
 
-	/**
-	 * @param array $matrix
-	 *
-	 * @return $this
-	 * @throws \chillerlan\QRCode\Output\QRCodeOutputException
-	 */
-	public function setMatrix(array $matrix){
-		$this->pixelCount = count($matrix);
+        // specify valid range?
+        if ($this->pixelCount < 2
+            || !isset($matrix[$this->pixelCount - 1])
+            || $this->pixelCount !== \count($matrix[$this->pixelCount - 1])
+        ) {
+            throw new QRCodeOutputException('Invalid matrix!');
+        }
 
-		// specify valid range?
-		if($this->pixelCount < 2
-			|| !isset($matrix[$this->pixelCount - 1])
-			|| $this->pixelCount !== count($matrix[$this->pixelCount - 1])
-		){
-			throw new QRCodeOutputException('Invalid matrix!');
-		}
+        $this->matrix = $matrix;
 
-		$this->matrix = $matrix;
-
-		return $this;
-	}
-
+        return $this;
+    }
 }

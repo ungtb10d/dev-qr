@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Class QRCodeException
  *
@@ -15,7 +15,7 @@ namespace qrcodegenerator\QRCode;
 use Exception;
 
 /**
- * Placeholder
+ * Class QRCodeException
  */
 class QRCodeException extends Exception{
 

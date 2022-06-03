@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Interface QRDataInterface
  *
@@ -15,24 +15,24 @@ namespace qrcodegenerator\QRCode\Data;
 use qrcodegenerator\QRCode\BitBuffer;
 
 /**
+ * Interface QRDataInterface
+ *
  * @property string data
  * @property int    dataLength
  * @property int    mode
  */
-interface QRDataInterface{
+interface QRDataInterface
+{
+    /**
+     * @param BitBuffer $buffer
+     * @return void
+     */
+    public function write(BitBuffer $buffer);
 
-	/**
-	 * @param \chillerlan\QRCode\BitBuffer $buffer
-	 * @return void
-	 */
-	public function write(BitBuffer &$buffer);
-
-	/**
-	 * @param $type
-	 *
-	 * @return int
-	 * @throws \chillerlan\QRCode\Data\QRCodeDataException
-	 */
-	public function getLengthInBits($type);
-
+    /**
+     * @param $type
+     * @return int
+     * @throws QRCodeDataException
+     */
+    public function getLengthInBits($type);
 }

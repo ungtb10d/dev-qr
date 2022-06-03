@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Interface QROutputInterface,
  *
@@ -13,21 +13,19 @@
 namespace qrcodegenerator\QRCode\Output;
 
 /**
- *
+ * Interface QROutputInterface
  */
-interface QROutputInterface{
+interface QROutputInterface
+{
+    /**
+     * @return mixed
+     */
+    public function dump();
 
-	/**
-	 * @return mixed
-	 */
-	public function dump();
-
-	/**
-	 * @param array $matrix
-	 *
-	 * @return $this
-	 * @throws \chillerlan\QRCode\Output\QRCodeOutputException
-	 */
-	public function setMatrix(array $matrix);
-
+    /**
+     * @param array $matrix
+     * @return $this
+     * @throws QRCodeOutputException
+     */
+    public function setMatrix(array $matrix);
 }

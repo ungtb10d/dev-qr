@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Class QROptions
  *
@@ -13,18 +13,17 @@
 namespace qrcodegenerator\QRCode;
 
 /**
- *
+ * Class QROptions
  */
-class QROptions{
+class QROptions
+{
+    /**
+     * @var int
+     */
+    public int $errorCorrectLevel = QRCode::ERROR_CORRECT_LEVEL_M;
 
-	/**
-	 * @var int
-	 */
-	public $errorCorrectLevel = QRCode::ERROR_CORRECT_LEVEL_M;
-
-	/**
-	 * @var int
-	 */
-	public $typeNumber = null;
-
+    /**
+     * @var int|null
+     */
+    public $typeNumber = null;
 }

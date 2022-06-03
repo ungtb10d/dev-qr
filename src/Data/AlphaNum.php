@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Class AlphaNum
  *
@@ -16,70 +16,72 @@ use qrcodegenerator\QRCode\BitBuffer;
 use qrcodegenerator\QRCode\QRConst;
 
 /**
- *
+ * Class AlphaNum
  */
-class AlphaNum extends QRDataAbstract{
+class AlphaNum extends QRDataAbstract
+{
+    /**
+     * @var array
+     */
+    public static array $CHAR_MAP = [
+        36 => ' ',
+        37 => '$',
+        38 => '%',
+        39 => '*',
+        40 => '+',
+        41 => '-',
+        42 => '.',
+        43 => '/',
+        44 => ':',
+    ];
 
-	public static $CHAR_MAP = [
-		36 => ' ',
-		37 => '$',
-		38 => '%',
-		39 => '*',
-		40 => '+',
-		41 => '-',
-		42 => '.',
-		43 => '/',
-		44 => ':',
-	];
+    /**
+     * @var int
+     */
+    public $mode = QRConst::MODE_ALPHANUM;
 
-	/**
-	 * @var int
-	 */
-	public $mode = QRConst::MODE_ALPHANUM;
+    /**
+     * @var array
+     */
+    protected $lengthBits = [9, 11, 13];
 
-	/**
-	 * @var array
-	 */
-	protected $lengthBits = [9, 11, 13];
+    /**
+     * @param BitBuffer $buffer
+     */
+    public function write(BitBuffer $buffer)
+    {
+        $i = 0;
+        while ($i + 1 < $this->dataLength) {
+            $buffer->put(self::getCharCode($this->data[$i]) * 45 + self::getCharCode($this->data[$i + 1]), 11);
+            $i += 2;
+        }
+        if ($i < $this->dataLength) {
+            $buffer->put(self::getCharCode($this->data[$i]), 6);
+        }
+    }
 
-	/**
-	 * @param \chillerlan\QRCode\BitBuffer $buffer
-	 */
-	public function write(BitBuffer &$buffer){
-		$i = 0;
+    /**
+     * @param string $string
+     * @return int
+     * @throws QRCodeDataException
+     */
+    private static function getCharCode($string)
+    {
+        $c = \ord($string);
 
-		while($i + 1 < $this->dataLength){
-			$buffer->put($this->getCharCode($this->data[$i]) * 45 + $this->getCharCode($this->data[$i + 1]), 11);
-			$i += 2;
-		}
+        switch (true) {
+            case \ord('0') <= $c && $c <= \ord('9'):
+                return $c - \ord('0');
+            case \ord('A') <= $c && $c <= \ord('Z'):
+                return $c - \ord('A') + 10;
+            default:
+                foreach (self::$CHAR_MAP as $i => $char) {
+                    if (\ord($char) === $c) {
+                        return $i;
+                    }
+                }
+        }
 
-		if($i < $this->dataLength){
-			$buffer->put($this->getCharCode($this->data[$i]), 6);
-		}
-
-	}
-
-	/**
-	 * @param string $c
-	 *
-	 * @return int
-	 * @throws \chillerlan\QRCode\Data\QRCodeDataException
-	 */
-	private static function getCharCode($c){
-		$c = ord($c);
-
-		switch(true){
-			case ord('0') <= $c && $c <= ord('9'): return $c - ord('0');
-			case ord('A') <= $c && $c <= ord('Z'): return $c - ord('A') + 10;
-			default:
-				foreach(self::$CHAR_MAP as $i => $char){
-					if(ord($char) === $c){
-						return $i;
-					}
-				}
-		}
-
-		throw new QRCodeDataException('illegal char: '.$c);
-	}
-
+        throw new QRCodeDataException('illegal char: ' . $c);
+    }
 }
